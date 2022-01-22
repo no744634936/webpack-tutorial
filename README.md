@@ -1,36 +1,42 @@
-webpack 处理css
+有时项目里可能会用到一些最新的js语法，
+
+但是，并不是所有浏览器都支持该语法，
+
+所以要用babel去将最新的js语法编译成所有浏览器都支持的语法
+
 
 
 1，componentS/hello-world-button.js  文件里导入 hello-world-button.scss 文件
 
+    hello-world-button.js文件里有一句
+
+    buttonCssClass = 'hello-world-button'; 
+
+    这个 class 属性的写法主流浏览器并不兼容，
+       
+    需要用babel来编译成主流浏览器兼容的写法
+
+
 2，index.js 导入 hello-world-button.js
 
-3，npm run build 打包index.js文件的时候
+3，npm run build 
+   webpack 打包index.js文件的时候
    
-   发现有导入 hello-world-button.scss文件，
-
-   但是webpack不知道如何打包
-
-4，
-
-    1,npm install sass-loader sass --save-dev
-    
-    sass 用来解析scss 文件
-    
-    sass-loader将scss转换成css
-
-    2，npm install css-loader   --save-dev
-
-    css-loader 只读取css内容
+   发现class 属性的写法主流浏览器并不兼容
 
 
-    3，npm install style-loader --save-dev
 
-    style-loader 将css内容放入html标签的style属性里去
+4， webpack.config.js 文件里写入 test: /\.js$/,   规则
+ 
+   npm install @babel/core --save-dev
 
-    style-loader 会将css放入bundle.js文件，它们不是分开的
+   npm install babel-loader --save-dev
 
-    webpack.config.js 文件里写入 test: /\.scss$/   规则
+   npm install @babel/preset-env --save-dev
+
+   npm install @babel/plugin-proposal-class-properties --save-dev
+
+
 
 
 

@@ -31,6 +31,19 @@ module.exports = {
                 use: [
                     'style-loader', 'css-loader', 'sass-loader'//注意顺序，loader是从右到左顺序使用的
                 ]
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [ '@babel/env' ], //将js的6，7，8，9，10，等版本的语法编译成版本5的语法
+                        // class properties这个新特性没有被主流浏览器支持，所以要添加@babel/plugin-proposal-class-properties插件
+                        // 如果还有其他被使用到的新特性，但是没被主流浏览器，也要在网上查一下，然后添加到plugins里面来
+                        plugins: [ '@babel/plugin-proposal-class-properties' ] 
+                    }
+                }
             }
         ]
     }

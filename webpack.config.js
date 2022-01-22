@@ -1,4 +1,6 @@
 const path = require('path');
+const TerserPlugin=require("terser-webpack-plugin")
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 
@@ -23,13 +25,13 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    'style-loader', 'css-loader'
+                     MiniCssExtractPlugin.loader, 'css-loader'
                 ]
             },
             {
                 test: /\.scss$/,
                 use: [
-                    'style-loader', 'css-loader', 'sass-loader'//注意顺序，loader是从右到左顺序使用的
+                     MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'//注意顺序，loader是从右到左顺序使用的
                 ]
             },
             {
@@ -46,6 +48,11 @@ module.exports = {
                 }
             }
         ]
-    }
-
+    },
+    plugins:[
+        new TerserPlugin(),// webpack5 自带的插件
+        new MiniCssExtractPlugin({
+            filename: 'styles.css'
+        })
+    ]
 };

@@ -1,45 +1,26 @@
-有时项目里可能会用到一些最新的js语法，
-
-但是，并不是所有浏览器都支持该语法，
-
-所以要用babel去将最新的js语法编译成所有浏览器都支持的语法
+1，terser-webpack-plugin 
+该插件可以压缩减少 bundle.js 文件的体积，webpack5 自带，无需install
 
 
+2，npm install --save-dev mini-css-extract-plugin
 
-1，componentS/hello-world-button.js  文件里导入 hello-world-button.scss 文件
+    该插件可以将css内容从html文件里的style标签里取出，做成一个单独styles.css文件
 
-    hello-world-button.js文件里有一句
-
-    buttonCssClass = 'hello-world-button'; 
-
-    这个 class 属性的写法主流浏览器并不兼容，
-       
-    需要用babel来编译成主流浏览器兼容的写法
+    ・css跟scss的rules里的 "style-loader"改为 MiniCssExtractPlugin.loader
 
 
-2，index.js 导入 hello-world-button.js
-
-3，npm run build 
-   webpack 打包index.js文件的时候
-   
-   发现class 属性的写法主流浏览器并不兼容
+    ・创建一个新的heading 组件，可以渲染一个h1 标签，然后导入index.js文件
 
 
+    ・npm run build 
 
-4， webpack.config.js 文件里写入 test: /\.js$/,   规则
- 
-   npm install @babel/core --save-dev
+        可以看到hello-world-button 跟 heading 
 
-   npm install babel-loader --save-dev
-
-   npm install @babel/preset-env --save-dev
-
-   npm install @babel/plugin-proposal-class-properties --save-dev
+        两个组件的css都被集中放入dist/style.css 文件中去了
 
 
+    ・然后将生成的 styles.css 文件导入到index.html 文件里去
+
+        <link rel="stylesheet" href="./dist/styles.css" />
 
 
-
-5, npm run build  生成 bundle.js 文件
-
-6, 浏览器打开index.html文件，点击按钮，查看按钮css属性

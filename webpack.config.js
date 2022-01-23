@@ -48,6 +48,12 @@ module.exports = {
                         plugins: [ '@babel/plugin-proposal-class-properties' ] 
                     }
                 }
+            },
+            {
+                test: /\.hbs$/,
+                use: [
+                    'handlebars-loader'
+                ]
             }
         ]
     },
@@ -58,10 +64,9 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Hello world',  //index.html文件的title
-            meta: {                //index.html文件的meta标签
-                description: 'Some description'
-            }
+            title: 'Hello world',
+            template: 'src/index.hbs',
+            description: 'Some description'
         }),
     ]
 };

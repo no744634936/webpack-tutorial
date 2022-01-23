@@ -1,5 +1,5 @@
 const path = require('path');
-const TerserPlugin=require("terser-webpack-plugin")
+// const TerserPlugin=require("terser-webpack-plugin")  //webpack5 自带的插件,production环境下可以注释掉
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -13,7 +13,7 @@ module.exports = {
         path:  path.resolve(__dirname, './dist'),    //必须为绝对路径
         publicPath: "auto"
     },
-    mode: 'development',
+    mode: 'production',
     module: {
         rules: [
             {
@@ -58,7 +58,7 @@ module.exports = {
         ]
     },
     plugins:[
-        new TerserPlugin(),// webpack5 自带的插件
+        // new TerserPlugin(),// webpack5 自带的插件,production环境下可以注释掉
         new MiniCssExtractPlugin({
             filename: 'styles.[contenthash].css'
         }),

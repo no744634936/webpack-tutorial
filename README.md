@@ -1,35 +1,18 @@
+production 模式与 development 模式的最大区别就是
 
+development 模式下，当js报错了，浏览器里显示的是未编译的index.js 代码 易于debug
 
-1,下载handlebars 模板引擎 (ejs,pug等都可以)
+production 模式下，当js报错了，浏览器里显示的是编译后的 bundle.xxx.js的代码，不易于debug
+-----------------------------------------------------------
 
-    npm install handlebars --save
+src/index.js 里故意写入一个错误代码
 
-2, 创建src/index.hbs
+自己可以尝试修改一下 webpack.config.js 文件里的mode选项
 
+然后npm run build
 
-3, npm install handlebars-loader --save-dev
+然后浏览器控制台里可以看到报错的js 文件是不一样的
 
-4,配置 webpack.config.js
--------------------------
-        new HtmlWebpackPlugin({
+development 模式下，当js报错了，浏览器里显示的是未编译的index.js 代码
 
-            title: 'Hello world',
-
-            template: 'src/index.hbs',
-
-            description: 'Some description'
-
-        }),
-
-------------------------
-
-        {
-            test: /\.hbs$/,
-            use: [
-                'handlebars-loader'
-            ]
-        }
---------------------------
-
-5, npm run build
- 可以看到 dist/index.html 是按 src/index.hbs 模板来创建的
+production 模式下，当js报错了，浏览器里显示的是编译后的 bundle.xxx.js的代码

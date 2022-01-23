@@ -13,7 +13,7 @@ module.exports = {
         path:  path.resolve(__dirname, './dist'),    //必须为绝对路径
         publicPath: "auto"
     },
-    mode: 'none',
+    mode: 'development',
     module: {
         rules: [
             {
